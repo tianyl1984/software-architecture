@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.tianyl.starter.mybatis.MybatisAutoConfiguration
+org.springframework.context.ApplicationContextInitializer=\
+org.tianyl.starter.mybatis.MybatisApplicationContextInitializer
