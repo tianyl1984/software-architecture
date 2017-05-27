@@ -3,11 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.tianyl.demo.parent</groupId>
-		<artifactId>demo-parent</artifactId>
+		<artifactId>order-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>user</artifactId>
-
+	<artifactId>order-app</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -26,5 +25,4 @@
 			<artifactId>mybatis-starter</artifactId>
 		</dependency>
 	</dependencies>
-	
 </project>

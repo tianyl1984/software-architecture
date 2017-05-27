@@ -8,8 +8,11 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>user</module>
 		<module>mybatis-starter</module>
+		<module>user-parent</module>
+		<module>goods-parent</module>
+		<module>order-parent</module>
+		<module>common</module>
 	</modules>
 
 	<properties>
@@ -36,15 +39,13 @@
 				<artifactId>commons-lang</artifactId>
 				<version>${commons-lang-version}</version>
 			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.42</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<dependencies>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
-	</dependencies>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
