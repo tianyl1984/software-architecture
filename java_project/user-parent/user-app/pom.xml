@@ -24,5 +24,9 @@
 			<groupId>com.tianyl.demo.parent</groupId>
 			<artifactId>mybatis-starter</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.tianyl.demo.parent</groupId>
+			<artifactId>user-client</artifactId>
+		</dependency>
 	</dependencies>
 </project>
