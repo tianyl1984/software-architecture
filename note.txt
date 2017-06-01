@@ -1,0 +1,6 @@
+
+挂载共享目录
+mount.vboxsf share /mnt/share
+
+启动consul
+consul agent -server -bootstrap-expect 1 -data-dir /root/consul-data/ -node node1 -datacenter dc1 -client 0.0.0.0 -ui

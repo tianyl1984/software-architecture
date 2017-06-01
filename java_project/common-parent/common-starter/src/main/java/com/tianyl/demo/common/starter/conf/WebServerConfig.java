@@ -1,4 +1,4 @@
-package com.tianyl.demo.user.conf;
+package com.tianyl.demo.common.starter.conf;
 
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;

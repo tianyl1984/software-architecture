@@ -28,5 +28,9 @@
 			<groupId>com.tianyl.demo.parent</groupId>
 			<artifactId>user-client</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.orbitz.consul</groupId>
+			<artifactId>consul-client</artifactId>
+		</dependency>
 	</dependencies>
 </project>

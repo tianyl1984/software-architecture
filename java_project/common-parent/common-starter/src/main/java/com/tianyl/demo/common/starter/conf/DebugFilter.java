@@ -1,4 +1,4 @@
-package com.tianyl.demo.user.conf;
+package com.tianyl.demo.common.starter.conf;
 
 import java.io.IOException;
 
@@ -10,10 +10,14 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DebugFilter implements Filter {
+
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -24,7 +28,7 @@ public class DebugFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		System.out.println(req.getRequestURL());
+		logger.info("request:{}", req.getRequestURL());
 		chain.doFilter(request, response);
 	}
 

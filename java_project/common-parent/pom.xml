@@ -5,5 +5,10 @@
     <artifactId>demo-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>common</artifactId>
+  <artifactId>common-parent</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>common-starter</module>
+  	<module>common-util</module>
+  </modules>
 </project>
