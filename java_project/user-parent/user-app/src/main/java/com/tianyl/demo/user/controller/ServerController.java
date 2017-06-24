@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tianyl.demo.user.entity.User;
+import com.alibaba.fastjson.JSONObject;
 
 @Controller
 @RequestMapping("server")
@@ -14,14 +14,16 @@ public class ServerController {
 	@Value("${server.port}")
 	private Integer port;
 
+	@Value("${spring.application.name}")
+	private String applicationName;
+
 	@RequestMapping("info")
 	@ResponseBody
 	public Object info() {
-		User u = new User();
-		u.setId(1L);
-		u.setUsername("sadf");
-		return u;
-		// return "server:" + port;
+		JSONObject json = new JSONObject();
+		json.put("name", applicationName);
+		json.put("port", port);
+		return json;
 	}
 
 }
