@@ -1,6 +1,9 @@
 package com.tianyl.demo.common.starter.conf;
 
-import java.util.UUID;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -12,6 +15,10 @@ import org.springframework.stereotype.Component;
 
 import com.orbitz.consul.AgentClient;
 import com.orbitz.consul.Consul;
+import com.orbitz.consul.NotRegisteredException;
+import com.orbitz.consul.model.agent.ImmutableRegistration;
+import com.orbitz.consul.model.agent.Registration.RegCheck;
+import com.tianyl.demo.common.util.ThreadUtil;
 
 @Component
 public class ConsulRegister {
@@ -38,12 +45,31 @@ public class ConsulRegister {
 		logger.info("start register to consul,consul.server:{},service:{},port:{}", consulServer, serviceName, port);
 		consul = Consul.builder().withUrl(consulServer).build();
 		agent = consul.agentClient();
-		serviceId = createServiceId(agent);
-		agent.register(port, 5L, serviceName, serviceId);
+		String address = getAddress(consulServer);
+		serviceId = createServiceId(agent, address, port);
+		ImmutableRegistration.Builder builder = ImmutableRegistration.builder();
+		builder.id(serviceId).name(serviceName).check(RegCheck.ttl(15L)).port(port).address(address);
+		agent.register(builder.build());
+		new Thread(new TTLCheckTask(agent, serviceId)).start();
 	}
 
-	private String createServiceId(AgentClient agent) {
-		return serviceName + "-" + UUID.randomUUID().toString();
+	private String getAddress(String consulServer) {
+		try {
+			URI uri = new URI(consulServer);
+			String host = uri.getHost();
+			int port = uri.getPort();
+			Socket s = new Socket(host, port);
+			String result = s.getLocalAddress().getHostName();
+			s.close();
+			return result;
+		} catch (URISyntaxException | IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	private String createServiceId(AgentClient agent, String address, int port) {
+		return serviceName + "-" + address + ":" + port;
 	}
 
 	@PreDestroy
@@ -53,4 +79,29 @@ public class ConsulRegister {
 		consul.destroy();
 	}
 
+	private static class TTLCheckTask implements Runnable {
+
+		private AgentClient agent;
+
+		private String serviceId;
+
+		public TTLCheckTask(AgentClient agent, String serviceId) {
+			this.agent = agent;
+			this.serviceId = serviceId;
+		}
+
+		@Override
+		public void run() {
+			while (true) {
+				try {
+					agent.pass(serviceId);
+				} catch (NotRegisteredException e) {
+					e.printStackTrace();
+					break;
+				}
+				ThreadUtil.safeSleep(10);
+			}
+		}
+
+	}
 }
