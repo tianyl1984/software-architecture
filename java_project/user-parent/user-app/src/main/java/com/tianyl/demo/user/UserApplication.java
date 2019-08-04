@@ -10,8 +10,9 @@ import com.tianyl.demo.common.util.ThreadUtil;
 public class UserApplication {
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(UserApplication.class, args);
-		ThreadUtil.safeSleep();
+		SpringApplication.run(UserApplication.class, args);
+//		ConfigurableApplicationContext context = SpringApplication.run(UserApplication.class, args);
+//		ThreadUtil.safeSleep();
 		// context.close();
 	}
 

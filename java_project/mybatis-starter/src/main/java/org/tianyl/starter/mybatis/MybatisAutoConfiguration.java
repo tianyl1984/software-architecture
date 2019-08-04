@@ -6,15 +6,15 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.tianyl.starter.mybatis.page.PageInterceptor;
 
-import tk.mybatis.mapper.common.Mapper;
-import tk.mybatis.spring.mapper.MapperScannerConfigurer;
 
 @Configuration
 public class MybatisAutoConfiguration {
@@ -27,7 +27,7 @@ public class MybatisAutoConfiguration {
 		Properties properties = new Properties();
 		properties.setProperty("mappers", Mapper.class.getName());
 		properties.setProperty("style", "normal");
-		configurer.setProperties(properties);
+//		configurer.setProperties(properties);
 		return configurer;
 	}
 

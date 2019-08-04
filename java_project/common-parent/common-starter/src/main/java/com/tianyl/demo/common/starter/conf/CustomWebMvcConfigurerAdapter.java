@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
-@Configuration
+//@Configuration
 public class CustomWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
 
 	@Override

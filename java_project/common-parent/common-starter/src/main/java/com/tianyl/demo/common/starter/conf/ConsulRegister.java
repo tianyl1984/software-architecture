@@ -20,7 +20,7 @@ import com.orbitz.consul.model.agent.ImmutableRegistration;
 import com.orbitz.consul.model.agent.Registration.RegCheck;
 import com.tianyl.demo.common.util.ThreadUtil;
 
-@Component
+//@Component
 public class ConsulRegister {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
