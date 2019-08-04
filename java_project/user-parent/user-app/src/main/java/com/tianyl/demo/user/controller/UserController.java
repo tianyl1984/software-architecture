@@ -27,11 +27,9 @@ public class UserController {
 
 	@RequestMapping("save")
 	@ResponseBody
-	public Object save(Integer userId, @RequestParam(name = "users", required = false) User[] users) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("userId", userId);
-		map.put("users", users);
-		return map;
+	public Object save() {
+		userService.save();
+		return "ok";
 	}
 
 }

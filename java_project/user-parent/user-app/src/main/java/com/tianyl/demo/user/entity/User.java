@@ -1,10 +1,15 @@
 package com.tianyl.demo.user.entity;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name = "dm_user")
 public class User {
 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
 	private Long id;
 
 	private String username;
