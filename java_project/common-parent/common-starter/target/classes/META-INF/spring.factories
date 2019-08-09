@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.tianyl.demo.common.starter.CommonStarterConfiguration

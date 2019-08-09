@@ -1,7 +1,0 @@
-com/tianyl/demo/user/conf/HttpInvokerService.class
-com/tianyl/demo/user/service/UserService.class
-com/tianyl/demo/user/controller/ServerController.class
-com/tianyl/demo/user/controller/UserController.class
-com/tianyl/demo/user/UserApplication.class
-com/tianyl/demo/user/mapper/UserMapper.class
-com/tianyl/demo/user/entity/User.class
