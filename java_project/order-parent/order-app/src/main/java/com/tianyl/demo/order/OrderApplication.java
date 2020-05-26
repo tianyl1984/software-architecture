@@ -3,6 +3,7 @@ package com.tianyl.demo.order;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import com.tianyl.demo.userClient.service.IUserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -18,9 +19,9 @@ import com.orbitz.consul.option.QueryOptions;
 public class OrderApplication {
 
 	public static void main(String[] args) throws Exception {
-		ConfigurableApplicationContext context = SpringApplication.run(OrderApplication.class, args);
-		// IUserService userService = context.getBean(IUserService.class);
-		// System.out.println(userService.getUser(1L));
+		SpringApplication.run(OrderApplication.class, args);
+//		 IUserService userService = context.getBean(IUserService.class);
+//		 System.out.println(userService.getUser(1L));
 
 		// Consul consul =
 		// Consul.builder().withUrl("http://192.168.0.122:8500").build();
@@ -33,26 +34,26 @@ public class OrderApplication {
 		// System.out.println(ser.getId());
 		// System.out.println(ser.getTags());
 		// }
-		System.out.println("over");
-
-		ServiceHealthCache serviceHealthCache = ServiceHealthCache.newCache(
-				Consul.builder().withUrl("http://192.168.0.122:8500").build().healthClient(), "user-service", true, 15,
-				QueryOptions.BLANK);
-		serviceHealthCache.addListener(new ConsulCache.Listener<ServiceHealthKey, ServiceHealth>() {
-			@Override
-			public void notify(Map<ServiceHealthKey, ServiceHealth> newValues) {
-				System.out.println("状态通知-----start");
-				for (ServiceHealthKey healthKey : newValues.keySet()) {
-					System.out.println(healthKey.toString());
-					System.out.println(newValues.get(healthKey).getService().toString());
-				}
-				System.out.println("状态通知-------end");
-			}
-		});
-		serviceHealthCache.awaitInitialized(5, TimeUnit.SECONDS);
+//		System.out.println("over");
+//
+//		ServiceHealthCache serviceHealthCache = ServiceHealthCache.newCache(
+//				Consul.builder().withUrl("http://192.168.0.122:8500").build().healthClient(), "user-service", true, 15,
+//				QueryOptions.BLANK);
+//		serviceHealthCache.addListener(new ConsulCache.Listener<ServiceHealthKey, ServiceHealth>() {
+//			@Override
+//			public void notify(Map<ServiceHealthKey, ServiceHealth> newValues) {
+//				System.out.println("状态通知-----start");
+//				for (ServiceHealthKey healthKey : newValues.keySet()) {
+//					System.out.println(healthKey.toString());
+//					System.out.println(newValues.get(healthKey).getService().toString());
+//				}
+//				System.out.println("状态通知-------end");
+//			}
+//		});
+//		serviceHealthCache.awaitInitialized(5, TimeUnit.SECONDS);
 		// serviceHealthCache.newCache(healthClient, serviceName, passing, watchSeconds,
 		// queryOptions, keyExtractor)
-		serviceHealthCache.start();
+//		serviceHealthCache.start();
 	}
 
 }

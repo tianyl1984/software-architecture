@@ -1,6 +1,7 @@
 package com.tianyl.demo.user.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,13 @@ public class UserController {
 
 	@RequestMapping("list")
 	@ResponseBody
-	public Object list() {
+	public List<User> list() {
 		return userService.list();
 	}
 
 	@RequestMapping("save")
 	@ResponseBody
-	public Object save() {
+	public String save() {
 		userService.save();
 		return "ok";
 	}
