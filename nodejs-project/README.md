@@ -110,3 +110,8 @@ docker service create --replicas 2 --config source=myconfig,target=/app/user/con
 更新
 docker service update --config-rm myconfig --config-add source=myconfig,target=/app/user/config.json,mode=0440 svcuser
 
+
+
+kubectl apply -f k8s-echo-svc-deployment.yaml
+
+
