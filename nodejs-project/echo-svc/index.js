@@ -21,7 +21,7 @@ const server = http.createServer((req, resp) => {
         if (query && query.msg) {
             result.msg = query.msg.toUpperCase();
         }
-        result.host = os.hostname;
+        result.host = os.hostname();
         result.ip = getIp();
         resp.writeHead(200, { 'Content-Type': 'application/json' });
         resp.end(JSON.stringify(result));
