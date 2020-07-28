@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-svc-deployment
+spec:
+  selector:
+    matchLabels:
+      app: user-svc
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: user-svc
+    spec:
+      containers:
+        - name: user-svc
+          image: user-svc:v1
+          ports:
+            - containerPort: 3002
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+  labels:
+    app: user-svc
+spec:
+  selector:
+    app: user-svc
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3002
